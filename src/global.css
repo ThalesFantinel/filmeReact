@@ -6,6 +6,7 @@
 }
 
 body {
+  background-image: url('https://wallpapercave.com/wp/wp9116512.jpg');
   background-color: black;
   color: white;
   -ms-overflow-style: none;  /* IE and Edge */
@@ -14,4 +15,8 @@ body {
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+#cardizinho{
+  border-radius: 15px;
 }
