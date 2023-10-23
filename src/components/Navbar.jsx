@@ -1,15 +1,26 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Container, Form, Nav, Navbar }from 'react-bootstrap';
+import { FaRocket } from "react-icons/fa";
 
 const Navbare = () => {
+
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!search) return;
+
+    navigate(`/search?q=${search}`);
+    setSearch("");
+  };
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary fixed-top">
       <Container fluid>
-        <Navbar.Brand href="#">SpaceMovies</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/"><FaRocket />SpaceMovies</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -17,23 +28,19 @@ const Navbare = () => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Início</Nav.Link>
-            <NavDropdown title="Categorias" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Ação</NavDropdown.Item>
-              <NavDropdown.Item href="#action3">Comédia</NavDropdown.Item>
-              <NavDropdown.Item href="#action3">Românce</NavDropdown.Item>
-              <NavDropdown.Item href="#action3">Drama</NavDropdown.Item>
-              <NavDropdown.Item href="#action3">Ficção</NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link as={Link} to="/">Início</Nav.Link>
+            
           </Nav>
-          <Form className="d-flex">
+          <Form className="d-flex" onSubmit={handleSubmit}>
             <Form.Control
-              type="search"
+              type="text"
               placeholder="Digite..."
-              className="me-2"
-              aria-label="Search"
+              onChange={(e) => setSearch(e.target.value)}
+              value={search}
             />
-            <Button variant="outline-dark">Pesquisar</Button>
+            <Button type="submit" variant="outline-dark">
+              Pesquisar
+            </Button>
           </Form>
         </Navbar.Collapse>
       </Container>
@@ -41,4 +48,4 @@ const Navbare = () => {
   );
 };
 
-export default Navbare
+export default Navbare;

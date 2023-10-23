@@ -6,11 +6,12 @@
 }
 
 body {
-  background-image: url('https://wallpapercave.com/wp/wp9116512.jpg');
-  background-color: black;
+  background-color: #201f41;
   color: white;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 ::-webkit-scrollbar {
